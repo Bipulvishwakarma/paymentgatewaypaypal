@@ -1,0 +1,64 @@
+{% extends 'enroll/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+.thumbnail{
+	width: 100%;
+	height: 200px;
+	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+}
+</style>
+	<title>Donation </title>
+	<meta id="meta" name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+	<!--<style type="text/css">
+		body{
+			background-color: #f0f0f0;
+		}
+		img{
+			max-width: 228px;
+			max-height: 346px;
+			box-shadow: 0 2px 5px 1px rgba(0,0,0,.2);
+		}
+	</style>-->
+</head>
+<body>
+{% load static %}
+<a href="{% url 'profile' %}"> 
+<label style="color:white">Hello {{user.username}} </label>
+</a>
+</div>
+	<div class='container'>
+		<div class="row">
+			{% for product in products %}
+				<div class="col-lg-4">
+					<br>
+					<div class="card card-body">
+					
+						<h4>{{product.name}}</h4>
+						<img class='thumbnail' src="{{product.image.url}}">
+						<hr>
+						<h5>{{product.description}}</h5>
+						<hr>
+						<h4>${{product.price|floatformat:2}}</h4>
+						<hr>
+						<a target="_blank" class="btn btn-sm btn-warning" href="{% url 'checkout' product.id product.price %}">Donate</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,41 @@
+<html>
+<head>
+<style>
+.center{
+    text-align:center
+}
+
+</style>
+<title>Profile</title>
+</head>
+<body>
+<div class='center'>
+<h1>Profile page</h1> 
+</div>
+
+<div class='center'>
+<h3>welcome {{user.username}} </h3>
+</div>
+<div class='center'>
+<div class='box-element'>
+<form action='' method='POST'>
+{% csrf_token %}
+{%if form.non_field_errors %}
+    {% for errors in form.non_field_errors%}
+        <p>{{error}}</p>
+    {%endfor%}  
+{%endif%}
+
+
+{% for fm in form %}
+    {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}  <br> <br>
+{% endfor %}
+</div>
+</div>
+
+<input type='submit' class="btn btn-sm btn-outline-secondary">
+
+</form>
+<a href='{% url 'logout' %}'>logout</a>
+</body>
+</html>

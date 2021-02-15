@@ -1,0 +1,29 @@
+<html>
+<head>
+<style>
+.center{
+    text-align:center
+}
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+img.avatar {
+  width: 25%;
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+{%csrf_token%}
+<form action='' method='POST'>
+{% csrf_token %}
+
+{% for fm in form %}
+    {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}  <br> <br>
+{% endfor %} 
+<input type='submit' value='signup'>
+</form>
+<a href='{% url 'login' %}'>Login</a>
+</body>
+</html>
